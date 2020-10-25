@@ -10,9 +10,9 @@ namespace PlayerService.UnitTests
         [Fact]
         public void ValidPlayerCreated_Succeeds()
         {
-            Player testPlayer = new Player(DefaultName, 1, PlayerPosition.Center);
+            Player testPlayer = new Player(DefaultName, 1, PlayerPosition.C);
             Assert.Equal(1 , testPlayer.PlayerNumber);
-            Assert.Equal(PlayerPosition.Center, testPlayer.PlayerPosition);
+            Assert.Equal(PlayerPosition.C, testPlayer.PlayerPosition);
             Assert.Equal(DefaultName, testPlayer.Name);
         }
 
@@ -23,7 +23,7 @@ namespace PlayerService.UnitTests
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => 
             {
-               new Player(DefaultName, playerNumber, PlayerPosition.Center);
+               new Player(DefaultName, playerNumber, PlayerPosition.C);
             });
         }
 
