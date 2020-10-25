@@ -36,7 +36,8 @@ namespace PlayerService
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            // This is a demo application, disable https
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
