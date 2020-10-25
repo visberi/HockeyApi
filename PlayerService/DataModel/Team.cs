@@ -20,10 +20,12 @@ namespace PlayerService.DataModel
 
             Players = new List<Player>();
 
-
-            foreach (var player in players)
+            if (!(players is null))
             {
-                AddPlayer(player);
+                foreach (var player in players)
+                {
+                    AddPlayer(player);
+                }
             }
         }
 
@@ -40,7 +42,9 @@ namespace PlayerService.DataModel
             if (Players.Exists(p => p.PlayerNumber == player.PlayerNumber)) // Check previous existence of player number in the team
             {
                 throw new InvalidOperationException(
-                    $"Error occurred when adding player {player.ToString()}: player with number {player.PlayerNumber} already exists in team {Name}");
+                    string.Format(
+                        "Error occurred when adding player {0}: player with number {1} already exists in team {2}",
+                        player, player.PlayerNumber, Name));
             }
 
             Players.Add(player);

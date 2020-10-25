@@ -46,7 +46,7 @@ namespace PlayerService.DataModel
         /// </summary>
         public override string ToString()
         {
-            return Name + " playernumber:" + PlayerNumber;
+            return Name + " player number:" + PlayerNumber;
         }
     }
 }
