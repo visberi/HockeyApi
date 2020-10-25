@@ -31,6 +31,8 @@ namespace PlayerService.DataModel
             PlayerPosition = playerPosition;
         }
 
+        public string Team { get; set; }
+
         /// <summary>
         /// Player number of the player in the team, should be unique among players in the team.
         /// </summary>
