@@ -13,7 +13,7 @@ namespace PlayerService.DataModel
         /// <summary>
         /// Goaltender
         /// </summary>
-        GoalTender,
+        Goaltender,
         /// <summary>
         /// Left defender
         /// </summary>

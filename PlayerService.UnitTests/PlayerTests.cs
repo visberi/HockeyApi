@@ -8,7 +8,7 @@ namespace PlayerService.UnitTests
     {
         private const string DefaultName = "Test Person";
         [Fact]
-        public void PlayerCreated()
+        public void ValidPlayerCreated_Succeeds()
         {
             Player testPlayer = new Player(DefaultName, 1, PlayerPosition.Center);
             Assert.Equal(1 , testPlayer.PlayerNumber);
@@ -19,7 +19,7 @@ namespace PlayerService.UnitTests
         [Theory]
         [InlineData(0)]
         [InlineData(100)]
-        public void InvalidPlayerNumberThrowsArgumentOutOfRange(int playerNumber)
+        public void InvalidPlayerNumber_ThrowsArgumentOutOfRange(int playerNumber)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => 
             {

@@ -14,13 +14,13 @@ namespace PlayerService.DataModel
         /// </summary>
         /// <param name="name">Name of the team.</param>
         /// <param name="players">Optional list of players that are part of the team.</param>
-        public Team(string name, List< Player>  players = null)
+        public Team(string name, IEnumerable<Player> players = null)
         {
             Name = name;
-            if(players is null)
-            {
-                Players = new List<Player>();
-            }
+
+            Players = new List<Player>();
+
+
             foreach (var player in players)
             {
                 AddPlayer(player);
