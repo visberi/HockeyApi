@@ -7,13 +7,15 @@ namespace PlayerService.UnitTests
     public class PlayerTests
     {
         private const string DefaultName = "Test Person";
+        private const string DefaultTeam = "TestTeam";
         [Fact]
         public void ValidPlayerCreated_Succeeds()
         {
-            Player testPlayer = new Player(DefaultName, 1, PlayerPosition.C);
+            Player testPlayer = new Player(DefaultName, 1, PlayerPosition.C, DefaultTeam);
             Assert.Equal(1 , testPlayer.PlayerNumber);
             Assert.Equal(PlayerPosition.C, testPlayer.PlayerPosition);
             Assert.Equal(DefaultName, testPlayer.Name);
+            Assert.Equal(DefaultTeam, testPlayer.Team);
         }
 
         [Theory]
@@ -23,7 +25,7 @@ namespace PlayerService.UnitTests
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => 
             {
-               new Player(DefaultName, playerNumber, PlayerPosition.C);
+               new Player(DefaultName, playerNumber, PlayerPosition.C, DefaultTeam);
             });
         }
 

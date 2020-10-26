@@ -8,26 +8,27 @@ namespace PlayerService.DataModel
 {
     public class Player
     {
+        #region Private Fields
         private int _playerNumber;
-        private string _playerPosition;
+        #endregion
 
-        #region constants
+
+        #region Constants
         private const int MinimumPlayerNumber = 1;
         private const int MaximumPlayerNumber = 99;
-        #endregion constants
+        #endregion Constants
 
 
         /// <summary>
-        /// Parameterized constr
+        /// Parameterized constructor
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="playerNumber"></param>
-        /// <param name="playerPosition"></param>
+        /// <param name="name">Name of the player</param>
+        /// <param name="playerNumber">Number of the player</param>
+        /// <param name="playerPosition">Player position</param>
+        /// <param name="team">Team name</param>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if player number is less than 1 or more than 99</exception>
-        public Player(string name, int playerNumber, PlayerPosition playerPosition, string team)
+        public Player(string name, int playerNumber, string playerPosition, string team)
         {
-
-    
             Name = name;
             PlayerNumber = playerNumber;
             PlayerPosition = playerPosition;
@@ -55,14 +56,9 @@ namespace PlayerService.DataModel
             }
         }
 
-
         public string Name { get; set; }
 
-        public PlayerPosition PlayerPosition
-        {
-            get;
-            set;
-        }
+        public string PlayerPosition { get; set; }
 
         /// <summary>
         /// Custom ToString implementation used e.g. for error messages

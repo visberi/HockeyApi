@@ -20,11 +20,12 @@ namespace PlayerService.Controllers
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
         [HttpGet]
-        public object Get()
+        public object Get(int page)
         {
-            var playerData = PlayerDataProvider.Players;
 
-            return playerData;
+            var playerData = PlayerDataProvider.GetPlayers();
+
+            return Ok(playerData);
         }
 
     }

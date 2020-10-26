@@ -23,10 +23,18 @@ namespace PlayerService.Controllers
         // Cache players read from data source into this variable
         private static IEnumerable<Player> _players = null;
 
-        public static IEnumerable<Player> Players
+        private static IEnumerable<Player> Players
         {
             // Return cached players or if no cache exists, read data from CSV file
             get { return _players ??= InitializePlayerDataFromCsv(); }
+        }
+
+        public static IEnumerable<Player> GetPlayers()
+        {
+            return Players
+                .OrderBy(p => p.Team)
+                .ThenBy(p => p.PlayerPosition)
+                .ThenBy(p => p.PlayerNumber);
         }
 
         /// <summary>
@@ -47,9 +55,10 @@ namespace PlayerService.Controllers
             while (csvReader.Read())
             {
                 int playerNumber = csvReader.GetField<int>("PlayerNumber");
-                string playerName = csvReader.GetField<string>("Name");
-                string team = csvReader.GetField<string>("Team");
-                string position = csvReader.GetField<string>("PlayerPosition");
+                // Trim the string fields to make the data reading more robust.
+                string playerName = csvReader.GetField<string>("Name").Trim();
+                string team = csvReader.GetField<string>("Team").Trim();
+                string position = csvReader.GetField<string>("PlayerPosition").Trim();
                 if (!Enum.IsDefined(typeof(PlayerPosition), position))
                 {
                     throw new InvalidDataException(
@@ -57,7 +66,7 @@ namespace PlayerService.Controllers
                             position));
                 }
 
-                players.Add(new Player(playerName, playerNumber, Enum.Parse<PlayerPosition>(position), team));
+                players.Add(new Player(playerName, playerNumber, position, team));
 
             }
 
