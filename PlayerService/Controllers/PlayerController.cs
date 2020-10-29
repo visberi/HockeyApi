@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PlayerService.Contracts;
 using PlayerService.DataModel;
 
 namespace PlayerService.Controllers
 {
-    [Route("/players/")]
+    [Route("/api/players")]
     [ApiController]
     public class PlayerController : ControllerBase
     {
@@ -20,12 +21,12 @@ namespace PlayerService.Controllers
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
         [HttpGet]
-        public object Get(int page)
+        public object Get([FromQuery] PaginationParameters paginationParameters)
         {
 
-            var playerData = PlayerDataProvider.GetPlayers();
+            var playerDataResponse = new PagedResponse<Player>( PlayerDataProvider.GetPlayersOrdered(), paginationParameters);
 
-            return Ok(playerData);
+            return Ok(playerDataResponse);
         }
 
     }
