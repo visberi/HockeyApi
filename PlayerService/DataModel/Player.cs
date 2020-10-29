@@ -27,7 +27,7 @@ namespace PlayerService.DataModel
         /// <param name="playerPosition">Player position</param>
         /// <param name="team">Team name</param>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if player number is less than 1 or more than 99</exception>
-        public Player(string name, int playerNumber, string playerPosition, string team)
+        public Player(string name, int playerNumber, PlayerPosition playerPosition, string team)
         {
             Name = name;
             PlayerNumber = playerNumber;
@@ -49,7 +49,9 @@ namespace PlayerService.DataModel
             {
                 if(value < MinimumPlayerNumber || value > MaximumPlayerNumber)
                 {
-                    throw new ArgumentOutOfRangeException(string.Format( "Invalid player number {0}, player number must be between {1} and {2}", value, MinimumPlayerNumber, MaximumPlayerNumber));
+                    throw new ArgumentOutOfRangeException(
+                        string.Format( "Invalid player number {0}, player number must be between {1} and {2}", 
+                                              value, MinimumPlayerNumber, MaximumPlayerNumber));
                 }
 
                 _playerNumber = value;
@@ -58,7 +60,15 @@ namespace PlayerService.DataModel
 
         public string Name { get; set; }
 
-        public string PlayerPosition { get; set; }
+        /// <summary>
+        /// Position of the player, used for sorting the players by position as well as for enforcing the source data format
+        /// </summary>
+        public PlayerPosition PlayerPosition { get; set; }
+
+        /// <summary>
+        /// Player position in string format, used for presenting the data
+        /// </summary>
+        public string PlayerPositionString => PlayerPosition.ToString();
 
         /// <summary>
         /// Custom ToString implementation used e.g. for error messages

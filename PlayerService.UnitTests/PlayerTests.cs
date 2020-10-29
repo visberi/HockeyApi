@@ -16,6 +16,7 @@ namespace PlayerService.UnitTests
             Assert.Equal(PlayerPosition.C, testPlayer.PlayerPosition);
             Assert.Equal(DefaultName, testPlayer.Name);
             Assert.Equal(DefaultTeam, testPlayer.Team);
+            Assert.Equal("C", testPlayer.PlayerPositionString);
         }
 
         [Theory]

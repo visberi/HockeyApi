@@ -6,14 +6,22 @@ using System.Threading.Tasks;
 namespace PlayerService.DataModel
 {
     /// <summary>
-    /// Player positions in an ice hockey team. Abbreviations from Finnish
+    /// Player positions in an ice hockey team, used for making input validity check when reading from CSV.
     /// </summary>
     public enum PlayerPosition
     {
         /// <summary>
-        /// Goaltender
+        /// Center
         /// </summary>
-        G,
+        C,
+        /// <summary>
+        /// Right wing
+        /// </summary>
+        RW,
+        /// <summary>
+        /// Left wing
+        /// </summary>
+        LW,
         /// <summary>
         /// Left defender
         /// </summary>
@@ -23,16 +31,8 @@ namespace PlayerService.DataModel
         /// </summary>
         RD,
         /// <summary>
-        /// Left wing
+        /// Goaltender
         /// </summary>
-        LW,
-        /// <summary>
-        /// C
-        /// </summary>
-        C,
-        /// <summary>
-        /// Right wing
-        /// </summary>
-        RW
+        G
     }
 }
