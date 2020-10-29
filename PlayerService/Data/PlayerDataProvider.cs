@@ -18,30 +18,39 @@ namespace PlayerService.Controllers
     {
 
 
-        private const string DataFilePath =  "./PlayerData.csv";
-
         // Cache players read from data source into this variable
-        private static IEnumerable<Player> _players = null;
+        private static List<Player> _players = null;
 
-        private static IEnumerable<Player> Players
+        private static List<Player> Players
         {
             // Return cached players or if no cache exists, read data from CSV file
             get { return _players ??= InitializePlayerDataFromCsv(); }
         }
 
-        public static IEnumerable<Player> GetPlayers()
+        public static IEnumerable<Player> GetPlayersByTeam(string team)
         {
             return Players
+                .Where(p => p.Team == team)
+                .OrderBy(p => p.PlayerNumber);
+        }
+
+        /// <summary>
+        /// Return the players as written in specification.
+        /// </summary>
+        /// <returns>The players ordered and paginated as dictated by paginationParameters</returns>
+        public  static IEnumerable<Player> GetPlayersOrdered()
+        {
+            return Players // Caching of query results should be considered in production application
                 .OrderBy(p => p.Team)
                 .ThenBy(p => p.PlayerPosition)
                 .ThenBy(p => p.PlayerNumber);
         }
 
         /// <summary>
-        /// Reads player data from resource csv file into cache and parses it into object form
+        /// Reads player data from resource csv file into cache, validates it and parses it into object form
         /// </summary>
   
-        private static IEnumerable<Player> InitializePlayerDataFromCsv()
+        private static List<Player> InitializePlayerDataFromCsv()
         {
 
             string playerTextData = Properties.Resources.PlayerData;
@@ -58,16 +67,18 @@ namespace PlayerService.Controllers
                 // Trim the string fields to make the data reading more robust.
                 string playerName = csvReader.GetField<string>("Name").Trim();
                 string team = csvReader.GetField<string>("Team").Trim();
-                string position = csvReader.GetField<string>("PlayerPosition").Trim();
-                if (!Enum.IsDefined(typeof(PlayerPosition), position))
+
+                // Get position first as string instead of enum member to trim whitespaces
+                string positionString = csvReader.GetField<string>("PlayerPosition").Trim(); 
+
+                // Check if the given string data is valid PlayerPosition
+                if (!Enum.IsDefined(typeof(PlayerPosition), positionString))
                 {
                     throw new InvalidDataException(
                         String.Format("Invalid player position type {0}, use one of following: G, LD, RD, LW, RW, C",
-                            position));
+                            positionString));
                 }
-
-                players.Add(new Player(playerName, playerNumber, position, team));
-
+                players.Add(new Player(playerName, playerNumber, Enum.Parse<PlayerPosition>(positionString), team));
             }
 
             ValidatePlayerData(players);
@@ -90,9 +101,9 @@ namespace PlayerService.Controllers
 
                 StringBuilder errorBuilder = new StringBuilder();
                 errorBuilder.Append("Error when reading player data: Following player number/ team pairs have multiple entries in data: " + Environment.NewLine);
-                foreach (var group in data)
+                foreach (var group in invalidData)
                 {
-                    errorBuilder.Append(String.Format("Team: {0}, Number: {1}", group.Team, group.PlayerNumber) + Environment.NewLine);
+                    errorBuilder.Append(String.Format("Team: {0}, Number: {1}", group.First().Team, group.First().PlayerNumber) + Environment.NewLine);
                 }
                 throw new InvalidOperationException(errorBuilder.ToString());
             }

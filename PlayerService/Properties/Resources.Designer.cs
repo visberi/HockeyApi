@@ -61,20 +61,21 @@ namespace PlayerService.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name	PlayerNumber	Team	PlayerPosition
-        ///Test Person 1	1	Hervannan Häkki	GK
-        ///Test Person 2	2	Hervannan Häkki	LD
-        ///Test Person 3	3	Hervannan Häkki	RD
-        ///Test Person 4	4	Hervannan Häkki	LW
-        ///Test Person 5	5	Hervannan Häkki	RW
-        ///Test Person 6	6	Hervannan Häkki	C
-        ///Test Person 7	1	Muotialan Mainio	GK
-        ///Test Person 8	2	Muotialan Mainio	LD
-        ///Test Person 9	3	Muotialan Mainio	RD
-        ///Test Person 10	4	Muotialan Mainio	LW
-        ///Test Person 11	5	Muotialan Mainio	RW
-        ///Test Person 12	6	Muotialan Mainio	C
-        ///.
+        ///   Looks up a localized string similar to Name,PlayerNumber,Team,PlayerPosition
+        ///Test Person 1,1,Hervannan Häkki,G
+        ///Test Person 2,2,Hervannan Häkki,LD
+        ///Test Person 3,3,Hervannan Häkki,RD
+        ///Test Person 4,4,Hervannan Häkki,LW
+        ///Test Person 5,5,Hervannan Häkki,RW
+        ///Test Person 6,6,Hervannan Häkki,C
+        ///Test Person 7,1,Muotialan Mainio,G
+        ///Test Person 8,2,Muotialan Mainio,LD
+        ///Test Person 9,3,Muotialan Mainio,RD
+        ///Test Person 10,4,Muotialan Mainio,LW
+        ///Test Person 11,5,Muotialan Mainio,RW
+        ///Test Person 12, 6,Muotialan Mainio,C
+        ///Mika Malli, 18, Hervannan Häkki,C
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string PlayerData {
             get {
