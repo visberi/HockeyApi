@@ -20,7 +20,7 @@
     "PlayerService": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/players",
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
