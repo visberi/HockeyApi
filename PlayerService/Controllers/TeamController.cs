@@ -20,6 +20,5 @@ namespace PlayerService.Controllers
             
             return Ok(response);
         }
-
     }
 }

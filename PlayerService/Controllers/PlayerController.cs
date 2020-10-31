@@ -20,14 +20,13 @@ namespace PlayerService.Controllers
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
+
         [HttpGet]
         public async Task<ActionResult> Get([FromQuery] PaginationParameters paginationParameters)
         {
-
             var playerDataResponse = new PagedResponse<Player>( await PlayerRepository.GetPlayersOrdered(), paginationParameters);
-
+            
             return Ok(playerDataResponse);
         }
-
     }
 }

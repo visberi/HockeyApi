@@ -7,6 +7,9 @@ using PlayerService.DataModel;
 
 namespace PlayerService.Contracts
 {
+    /// <summary>
+    /// Implement minimal offset pagination implementation
+    /// </summary>
     public class PagedResponse<T>
     {
         public PagedResponse()

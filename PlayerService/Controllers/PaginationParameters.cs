@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace PlayerService.Controllers
 {
     /// <summary>
-    /// A container class to keep pagination related information
+    /// A container class to for pagination information to implement simple pagination
     /// </summary>
     public class PaginationParameters
     {
