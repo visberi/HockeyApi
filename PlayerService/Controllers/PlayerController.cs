@@ -22,9 +22,9 @@ namespace PlayerService.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Get([FromQuery] PaginationParameters paginationParameters)
+        public ActionResult Get([FromQuery] PaginationParameters paginationParameters)
         {
-            var playerDataResponse = new PagedResponse<Player>( await PlayerRepository.GetPlayersOrdered(), paginationParameters);
+            var playerDataResponse = new PagedResponse<Player>(  PlayerProvider.GetPlayersOrdered(), paginationParameters);
             
             return Ok(playerDataResponse);
         }

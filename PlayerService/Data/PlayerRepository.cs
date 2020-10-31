@@ -3,84 +3,53 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using CsvHelper;
 using PlayerService.DataModel;
+using PlayerService.Properties;
 
-namespace PlayerService.Controllers
+namespace PlayerService.Data
 {
-    /// <summary>
-    /// Player data provider that reads player data from a json file, caches it and provides interface to read it.
-    ///
-    /// While the data is cached in memory, asynchronous operation of the interface is not strictly necessary.
-    /// However, it was made async for learning purposes.
-    /// </summary>
     public static class PlayerRepository
     {
         // Cache players read from data source into this variable
         private static List<Player> _players = null;
 
-
-        private static async Task<List<Player>> GetPlayersAsync()
+        /// <summary>
+        /// Get list of players loaded in memory. If no loading has been done, load default player list from resource
+        /// files
+        /// </summary>
+        /// <returns></returns>
+        public static List<Player> GetPlayers()
         {
-            // Return cached players or if no cache exists, read data from CSV file
-            if (_players == null)
+            if (_players is null)
             {
-                _players = await InitializePlayerDataFromCsv();
+                throw new InvalidOperationException("Error: player data has not been initialized.");
             }
+            // Return cached players or if no cache exists, read data from CSV file
             return _players;
         }
 
         /// <summary>
-        /// Get players ordered by team and player number in ascending order
-        /// </summary>
-        /// <param name="team"></param>
-        /// <returns></returns>
-        public static async Task<IEnumerable<Player>> GetPlayersByTeam(string team)
-        {
-            var players = await GetPlayersAsync();
-
-            return players
-                .Where(p => p.Team == team)
-                .OrderBy(p => p.PlayerNumber);
-        }
-
-        /// <summary>
-        /// Return the players as written in specification:
-        /// Ordered by Team, player position and player number in ascending order
-        /// </summary>
-        /// <returns>The players ordered and paginated as dictated by paginationParameters</returns>
-        public static async Task<IEnumerable<Player>> GetPlayersOrdered()
-        {
-            var players = await GetPlayersAsync();
-
-            return players
-                .OrderBy(p => p.Team)
-                .ThenBy(p => p.PlayerPosition)
-                .ThenBy(p => p.PlayerNumber);
-        }
-
-        /// <summary>
         /// Reads player data from resource csv file into cache, validates it and parses it into object form
+        ///
+        /// This is called at Startup.cs with default data but can be invoked later to change data. Not beautiful but
+        /// good enough for the purpose.
         /// </summary>
-  
-        private static async Task<List<Player>> InitializePlayerDataFromCsv()
+        public static List<Player> InitializePlayerDataFromCsv(string csvPlayerData)
         {
 
-            string playerTextData = Properties.Resources.PlayerData;
-
-            using TextReader reader = new StringReader(playerTextData);
+            using TextReader reader = new StringReader(csvPlayerData);
             using var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture);
 
             List<Player> players = new List<Player>();
 
-            await csvReader.ReadAsync();
+            csvReader.Read();
 
             csvReader.ReadHeader();
 
-            while (await csvReader.ReadAsync())
+            while ( csvReader.Read())
             {
                 int playerNumber = csvReader.GetField<int>("PlayerNumber");
 

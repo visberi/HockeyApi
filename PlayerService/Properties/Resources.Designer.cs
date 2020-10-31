@@ -77,9 +77,9 @@ namespace PlayerService.Properties {
         ///Mika Malli, 18, Hervannan Häkki,C
         /// [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string PlayerData {
+        internal static string DefaultPlayerData {
             get {
-                return ResourceManager.GetString("PlayerData", resourceCulture);
+                return ResourceManager.GetString("DefaultPlayerData", resourceCulture);
             }
         }
     }
