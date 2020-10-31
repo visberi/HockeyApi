@@ -31,9 +31,7 @@ namespace PlayerService
 
             services.AddMvc();
 
-            services.AddSwaggerGen(); //c =>
-            //c.SwaggerDoc("Version 1",
-            //    new OpenApiInfo{ Version= "v1", Title="Hockey Player API V1"}));
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,14 +42,18 @@ namespace PlayerService
                 app.UseDeveloperExceptionPage();
             }
 
-            // This is a demo application, disable https
+            // This is a demo application, disabled https
             //app.UseHttpsRedirection();
+
             // Enable Swagger api documentation service
             app.UseSwagger();
 
             app.UseSwaggerUI(
-                c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hockey Player API V1")
-            );
+                c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hockey Player API V1");
+                    c.RoutePrefix = string.Empty; // This makes the server server Swagger in app root
+                });
 
             app.UseRouting();
 
