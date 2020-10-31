@@ -8,16 +8,11 @@ namespace PlayerService.DataModel
 {
     public class Player
     {
-        #region Private Fields
         private int _playerNumber;
-        #endregion
 
-
-        #region Constants
         private const int MinimumPlayerNumber = 1;
-        private const int MaximumPlayerNumber = 99;
-        #endregion Constants
 
+        private const int MaximumPlayerNumber = 99;
 
         /// <summary>
         /// Parameterized constructor
@@ -34,8 +29,6 @@ namespace PlayerService.DataModel
             PlayerPosition = playerPosition;
             Team = team;
         }
-
-  
 
         public string Team { get; set; }
 

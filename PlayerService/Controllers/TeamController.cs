@@ -13,13 +13,12 @@ namespace PlayerService.Controllers
     [ApiController]
     public class TeamController : ControllerBase
     {
-
-
-        // GET: api/Team/Team Name
         [HttpGet("{name}", Name = "Get")]
-        public  object Get(string name, [FromQuery] PaginationParameters paginationParameters)
+        public async Task<ActionResult> Get(string name, [FromQuery] PaginationParameters paginationParameters)
         {
-            return new PagedResponse<Player>(PlayerDataProvider.GetPlayersByTeam(name), paginationParameters) ;
+            var response = new PagedResponse<Player>(await PlayerRepository.GetPlayersByTeam(name), paginationParameters) ;
+            
+            return Ok(response);
         }
 
     }
