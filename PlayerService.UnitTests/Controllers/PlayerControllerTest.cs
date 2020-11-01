@@ -28,8 +28,9 @@ namespace PlayerService.UnitTests.Controllers
         /// <param name="indexOnPage"></param>
         /// <param name="expectedPlayerName"></param>
         [Theory]
-        [InlineData(1, 2, "Player9")]
-        [InlineData(2, 3, "Player15")]
+        [InlineData(1, 1, "Player13")]
+        [InlineData(2, 3, "Player29")]
+        [InlineData(2, 7, "Player10")]
         public void Player_AtCorrectLocation( int pageNumber, int indexOnPage, string expectedPlayerName)
         {
             ActionResult result = _controller.Get(new PaginationParameters(10,pageNumber));

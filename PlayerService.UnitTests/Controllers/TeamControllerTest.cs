@@ -22,7 +22,7 @@ namespace PlayerService.UnitTests.Controllers
         }
 
         [Theory]
-        [InlineData("Team 1", 2, 4, 29, 5)]
+        [InlineData("Team 1", 2, 3, 29, 5)]
         [InlineData("Team 3",1, 3, 15, 5)]
         [InlineData("Team 4", 1, 0, 4, 4)]
         private void TeamPlayers_SortedCorrectly(string team, int pageNumber, int indexOnPage, int expectedPlayerNumberOnPage, int expectedPlayerCount)
