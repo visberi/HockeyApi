@@ -17,10 +17,10 @@ namespace PlayerService.UnitTests
         }
 
         [Fact]
-        private void PageSizeZero_SetToMinimumSize()
+        private void PageSizeZero_SetToDefaultSize()
         {
             PaginationParameters paginationParameters = new PaginationParameters(0, 2);
-            Assert.Equal(PaginationParameters.MinPageSize, paginationParameters.PageSize);
+            Assert.Equal(PaginationParameters.DefaultPageSize, paginationParameters.PageSize);
         }
 
         [Fact]
