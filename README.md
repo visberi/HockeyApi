@@ -13,9 +13,9 @@ Players api return players loaded in the application sorted by team name (ascend
 Teams api returns players in a team (team name as get parameter) ordered by ascending player number.
 
 There are three default teams in team api at /api/team that can be queried:
-Lukonmäen Luja
-Muotialan Mainio
-Hervannan Häkki
+- Lukonmäen Luja
+- Muotialan Mainio
+- Hervannan Häkki
 
 
 
