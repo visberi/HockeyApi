@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PlayerService.Contracts;
+using PlayerService.Data;
 using PlayerService.DataModel;
 
 namespace PlayerService.Controllers

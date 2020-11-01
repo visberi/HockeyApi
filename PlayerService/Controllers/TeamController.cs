@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PlayerService.Contracts;
+using PlayerService.Data;
 using PlayerService.DataModel;
 
 namespace PlayerService.Controllers

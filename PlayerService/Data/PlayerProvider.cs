@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using CsvHelper;
-using PlayerService.Data;
 using PlayerService.DataModel;
-using PlayerService.Properties;
 
-namespace PlayerService.Controllers
+namespace PlayerService.Data
 {
     /// <summary>
     /// Player data provider layer
