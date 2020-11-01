@@ -43,11 +43,20 @@ namespace PlayerService.UnitTests
         }
 
         [Fact]
-        private void PageOverMaximum_ReturnsLastPage()
+        private void PageOverMaximum_ThrowsInvalidPageException()
         { 
             paginationParameters = new PaginationParameters(10, 4);
-            PaginatedResponse<int> paginatedData = new PaginatedResponse<int>(data, paginationParameters);
-            Assert.Equal(3, paginatedData.PaginationInfo.CurrentPage);
+            Assert.Throws<InvalidPageException>(()
+                => new PaginatedResponse<int>(data, paginationParameters));
+        }
+
+        [Fact]
+        private void PageUnderZero_ThrowsInvalidPageException()
+        {
+            paginationParameters = new PaginationParameters(10, -1);
+            Assert.Throws<InvalidPageException>(() =>
+            
+                new PaginatedResponse<int>(data, paginationParameters));
         }
 
         [Fact]

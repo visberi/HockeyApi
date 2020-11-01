@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using PlayerService.Contracts;
+
+namespace PlayerService.Controllers
+{
+    /// <summary>
+    /// Exception handler, boilerplate taken from
+    /// https://stackoverflow.com/questions/38630076/asp-net-core-web-api-exception-handling on 1st Nov 2020
+    /// </summary>
+    [ApiExplorerSettings(IgnoreApi = true)]
+    [ApiController]
+    public class ErrorController : ControllerBase
+    {
+        [Route("error")]
+        public IActionResult Error()
+        {
+            IActionResult result;
+            var context = HttpContext.Features.Get<IExceptionHandlerFeature>();
+            var exception = context?.Error; // Your exception
+
+            // Not Found result is thrown if invalid page is being searched
+            if (exception is InvalidPageException ) result = new NotFoundResult();
+            else result = new StatusCodeResult( (int)HttpStatusCode.InternalServerError);
+   
+            return result; // Your error model
+        }
+    }
+}

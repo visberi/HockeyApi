@@ -48,6 +48,9 @@ namespace PlayerService
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseExceptionHandler("/error");
+
+
             // This is a demo application, disabled https
             //app.UseHttpsRedirection();
 

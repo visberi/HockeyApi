@@ -6,13 +6,23 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.WebUtilities;
 using PlayerService.Services;
 
-namespace PlayerService.Controllers
+namespace PlayerService.Contracts
 {
     /// <summary>
     /// A container class to for pagination information to implement simple pagination
     /// </summary>
     public class PaginationParameters
     {
+        public static int CurrentPageNotSet = 0;
+
+        private const int DefaultPage = 1;
+
+        public const int DefaultPageSize = 10;
+        
+        public const int MaxPageSize = 50;
+
+        public const int MinPageSize = 1;
+
         /// <summary>
         /// Init with default values.
         /// </summary>
@@ -26,24 +36,18 @@ namespace PlayerService.Controllers
         /// Create new pagination parameter object.
         /// </summary>
         /// <param name="pageSize">If value is more then MaxPageSize, MaxPageSize value is used instead.
-        /// If value is zero (no parameter from api given), set to default value.
+        /// If value is zero (e.g. no parameter from api given), set to default value.
         /// </param>
-        /// <param name="currentCurrentPage">CurrentPage of data to be returned.
-        /// If value is less than 1, page number 1 is used.
+        /// <param name="currentPage">CurrentPage of data to be returned.
+        /// If value is 0, default page number is used instead.
         /// </param>
-        public PaginationParameters(int pageSize, int currentCurrentPage)
+        public PaginationParameters(int pageSize, int currentPage)
         {
-            PageSize = pageSize == 0 ? DefaultPageSize : pageSize;
+            PageSize = pageSize == CurrentPageNotSet ? DefaultPageSize : pageSize;
 
-            CurrentPage = currentCurrentPage;
+            CurrentPage = currentPage;
             PageSize = pageSize;
         }
-
-        public const int DefaultPageSize = 10;
-        
-        public const int MaxPageSize = 50;
-
-        public const int MinPageSize = 1;
 
         private int _pageSize = 10;
 
@@ -52,7 +56,7 @@ namespace PlayerService.Controllers
         public int CurrentPage
         {
             get => _currentPage;
-            set => _currentPage = value < 1 ? 1 : value;
+            set => _currentPage = value == CurrentPageNotSet ? DefaultPage : value;
         }
 
         public Uri BaseUri { get; set; }
@@ -94,7 +98,6 @@ namespace PlayerService.Controllers
                 return  new Uri(uri);
             }
         }
-
         public Uri PreviousUri
         {
             get
