@@ -7,12 +7,12 @@ namespace PlayerService.Data
     /// <summary>
     /// Player data provider layer
     /// </summary>
-    public static class PlayerProvider
+    public class PlayerService: IPlayerService
     {
         /// <summary>
         /// Get players ordered by team and player number in ascending order
         /// </summary>
-        public static IEnumerable<Player> GetPlayersByTeam(string team)
+        public IEnumerable<Player> GetPlayersByTeam(string team)
         {
             var players = PlayerRepository.GetPlayers();
 
@@ -26,7 +26,7 @@ namespace PlayerService.Data
         /// Ordered by Team, player position and player number in ascending order
         /// </summary>
         /// <returns>The players ordered and paginated as dictated by paginationParameters</returns>
-        public static IEnumerable<Player> GetPlayersOrdered()
+        public IEnumerable<Player> GetPlayersOrdered()
         {
             var players = PlayerRepository.GetPlayers();
 

@@ -38,6 +38,8 @@ namespace PlayerService
             services.AddSwaggerGen();
 
             services.AddLogging();
+
+            services.AddSingleton<IPlayerService>(new Data.PlayerService());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

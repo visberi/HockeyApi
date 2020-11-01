@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using PlayerService.Contracts;
 
 namespace PlayerService.Controllers
@@ -19,6 +20,12 @@ namespace PlayerService.Controllers
     [ApiController]
     public class ErrorController : ControllerBase
     {
+        private ILogger<ErrorController> _logger;
+        ErrorController(ILogger<ErrorController> logger)
+        {
+            _logger = logger;
+        }
+
         [Route("error")]
         public IActionResult Error()
         {
@@ -29,7 +36,7 @@ namespace PlayerService.Controllers
             // Not Found result is thrown if invalid page is being searched
             if (exception is InvalidPageException ) result = new NotFoundResult();
             else result = new StatusCodeResult( (int)HttpStatusCode.InternalServerError);
-   
+            _logger.LogError(String.Format("Error occurred: {0}", exception.Message));
             return result; // Your error model
         }
     }

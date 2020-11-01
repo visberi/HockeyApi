@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using PlayerService.Contracts;
 using PlayerService.Controllers;
 using Xunit;
 

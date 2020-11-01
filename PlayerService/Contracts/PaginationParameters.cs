@@ -86,7 +86,8 @@ namespace PlayerService.Contracts
             } 
         }
 
-        public Uri NextUri {
+        public Uri NextUri 
+        {
             get
             {
                 if (CurrentPage == TotalPageCount)
