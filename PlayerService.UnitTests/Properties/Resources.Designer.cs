@@ -61,55 +61,33 @@ namespace PlayerService.UnitTests.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name	PlayerNumber	Team	PlayerPosition
-        ///Player1	1	Team 1	C
-        ///Player2	2	Team 2	LW
-        ///Player3	3	Team 3	RW
-        ///Player4	4	Team 4	LD
-        ///Player5	5	Team 1	RD
-        ///Player6	6	Team 2	G
-        ///Player7	7	Team 3	C
-        ///Player8	8	Team 4	LW
-        ///Player9	9	Team 1	RW
-        ///Player10	10	Team 2	LD
-        ///Player11	11	Team 3	RD
-        ///Player12	12	Team 4	G
-        ///Player13	13	Team 1	C
-        ///Player14	14	Team 2	LW
-        ///Player15	15	Team 3	RW
-        ///Player16	16	Team 4	LD
-        ///Player17	17	Team 1	RD
-        ///Player18	18	Team 2	G
-        ///Player19	19	Team 3	C
-        ///Player20	20	Team 4	LW
+        ///   Looks up a localized string similar to Name,PlayerNumber,Team,PlayerPosition
+        ///Player1,1,Team 1,C
+        ///Player2,2,Team 2,LW
+        ///Player3,3,Team 3,RW
+        ///Player4,4,Team 4,LD
+        ///Player5,5,Team 1,RD
+        ///Player6,6,Team 2,G
+        ///Player7,7,Team 3,C
+        ///Player8,8,Team 4,LW
+        ///Player9,9,Team 1,RW
+        ///Player10,10,Team 2,LD
+        ///Player11,11,Team 3,RD
+        ///Player12,12,Team 4,G
+        ///Player13,13,Team 1,C
+        ///Player14,14,Team 2,LW
+        ///Player15,15,Team 3,RW
+        ///Player16,16,Team 4,LD
+        ///Player17,17,Team 1,RD
+        ///Player18,18,Team 2,G
+        ///Player19,19,Team 3,C
+        ///Player20,20,Team 4,LW
+        ///
         ///.
         /// </summary>
         internal static string ControllerTestData {
             get {
                 return ResourceManager.GetString("ControllerTestData", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name,PlayerNumber,Team,PlayerPosition
-        ///Test Person 1,1,Hervannan Häkki,G
-        ///Test Person 2,2,Hervannan Häkki,LD
-        ///Test Person 3,3,Hervannan Häkki,RD
-        ///Test Person 4,4,Hervannan Häkki,LW
-        ///Test Person 5,5,Hervannan Häkki,RW
-        ///Test Person 6,6,Hervannan Häkki,C
-        ///Test Person 7,1,Muotialan Mainio,G
-        ///Test Person 8,2,Muotialan Mainio,LD
-        ///Test Person 9,3,Muotialan Mainio,RD
-        ///Test Person 10,4,Muotialan Mainio,LW
-        ///Test Person 11,5,Muotialan Mainio,RW
-        ///Test Person 12, 6,Muotialan Mainio,C
-        ///Mika Malli, 18, Hervannan Häkki,C
-        /// [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string TestPlayerData {
-            get {
-                return ResourceManager.GetString("TestPlayerData", resourceCulture);
             }
         }
     }
