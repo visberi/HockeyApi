@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using PlayerService.Contracts;
 using PlayerService.Controllers;
 using PlayerService.Data;
@@ -14,11 +16,14 @@ namespace PlayerService.UnitTests
 {
     public class TeamControllerTest
     {
-        private  TeamController _controller = new TeamController();
+
+        private TeamController _controller;
 
         public TeamControllerTest()
         {
             PlayerRepository.InitializePlayerDataFromCsv(Resources.ControllerTestData);
+            ILoggerFactory mockFactory = new NullLoggerFactory();
+            _controller = new TeamController(mockFactory.CreateLogger<TeamController>());
         }
 
         [Theory]

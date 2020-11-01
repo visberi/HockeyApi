@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using PlayerService.Contracts;
 using PlayerService.Controllers;
 using PlayerService.Data;
@@ -14,11 +16,13 @@ namespace PlayerService.UnitTests
 {
     public class PlayerControllerTest
     {
-        private PlayerController _controller = new PlayerController();
+        private PlayerController _controller;
 
         public PlayerControllerTest()
         {
             PlayerRepository.InitializePlayerDataFromCsv(Resources.ControllerTestData);
+            ILoggerFactory mockFactory = new NullLoggerFactory();
+            _controller = new PlayerController(mockFactory.CreateLogger<PlayerController>());
         }
 
         /// <summary>

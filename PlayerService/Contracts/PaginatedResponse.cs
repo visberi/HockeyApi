@@ -13,15 +13,19 @@ namespace PlayerService.Contracts
     /// </summary>
     public class PaginatedResponse<T>
     {
+        /// <summary>
+        /// Create a new response. Sets properties of pageInfo based on nonPaginatedData.
+        /// Makes sanity check to current page given by pageInfo and if invalid page is given
+        /// set page to last page of data.
+        /// </summary>
+        /// <param name="nonPaginatedData"></param>
+        /// <param name="pageInfo"></param>
         public PaginatedResponse (IEnumerable<T> nonPaginatedData, PaginationParameters pageInfo)
         {
             NonPaginatedData = nonPaginatedData;
  
             PaginationInfo = pageInfo;
 
-            // Set pagination information to reflect the state of data.
-
-            // Check that the paging did not exceed the count of pages
             int lastPage = GetLastPageNumber(nonPaginatedData, pageInfo.PageSize);
             if (pageInfo.CurrentPage > lastPage)
             {
