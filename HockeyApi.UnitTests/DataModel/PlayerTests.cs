@@ -7,6 +7,7 @@ namespace HockeyApi.UnitTests
     public class PlayerTests
     {
         private const string DefaultName = "Test Person";
+
         private const string DefaultTeam = "TestTeam";
         [Fact]
         public void ValidPlayerCreated_Succeeds()

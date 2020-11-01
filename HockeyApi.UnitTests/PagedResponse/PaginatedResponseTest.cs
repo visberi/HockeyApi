@@ -22,7 +22,6 @@ namespace HockeyApi.UnitTests
                 data.Add(i);
             }
 
-            // Create default pagination parameters
             paginationParameters = new PaginationParameters();
         }
 

@@ -13,7 +13,7 @@ namespace HockeyApi.UnitTests
         /// Invalid data has two players with same number in same team.
         /// </summary>
         [Fact]
-        private  void InvalidData_ThrowsExceptionOnInitialize()
+        private void InvalidData_ThrowsExceptionOnInitialize()
         {
             Assert.Throws<InvalidOperationException>( () =>
                 PlayerRepository.InitializePlayerDataFromCsv(Resources.InvalidData));
