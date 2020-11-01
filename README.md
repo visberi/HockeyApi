@@ -20,4 +20,4 @@ There are three default teams in team api at /api/team that can be queried:
 
 
 ## Notes on technical solutions
-- The data layer of the application is a poor man´s one using a static data provider class initiated
+- The data layer of the application is a poor man´s one using a static data provider class initiated at application Startup code.
