@@ -65,12 +65,6 @@ namespace PlayerService.UnitTests.Properties {
         ///Player1,1,Team 1,C
         ///Player2,2,Team 2,LW
         ///Player3,3,Team 3,RW
-        ///Player4,4,Team 4,LD
-        ///Player5,5,Team 1,RD
-        ///Player6,6,Team 2,G
-        ///Player7,7,Team 3,C
-        ///Player8,8,Team 4,LW
-        ///Player9,9,Team 1,RW
         ///Player10,10,Team 2,LD
         ///Player11,11,Team 3,RD
         ///Player12,12,Team 4,G
@@ -81,13 +75,30 @@ namespace PlayerService.UnitTests.Properties {
         ///Player17,17,Team 1,RD
         ///Player18,18,Team 2,G
         ///Player19,19,Team 3,C
-        ///Player20,20,Team 4,LW
-        ///
-        ///.
+        ///Player4,4,Team 4,LD
+        ///Player5,5,Team 1,RD
+        ///Player6,6,Team 2,G
+        ///Player7,7,Team 3,C
+        ///Player8,8,Team 4,LW
+        ///Player9,9,Team 1,RW
+        ///Player21,21,Team 1,C
+        ///Player22,22,Team 1,LW
+        ///Player23,23,Team [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ControllerTestData {
             get {
                 return ResourceManager.GetString("ControllerTestData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name,PlayerNumber,Team,PlayerPosition
+        ///Player1,1,Team 1,C
+        ///Player2,1,Team 1,G.
+        /// </summary>
+        internal static string InvalidData {
+            get {
+                return ResourceManager.GetString("InvalidData", resourceCulture);
             }
         }
     }

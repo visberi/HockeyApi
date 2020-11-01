@@ -20,7 +20,6 @@ namespace PlayerService.Data
         /// Get list of players loaded in memory. If no loading has been done, load default player list from resource
         /// files
         /// </summary>
-        /// <returns></returns>
         public static List<Player> GetPlayers()
         {
             if (_players is null)
@@ -32,8 +31,7 @@ namespace PlayerService.Data
         }
 
         /// <summary>
-        /// Reads player data from resource csv file into cache, validates it and parses it into object form
-        ///
+        /// Reads player data from resource csv file into cache, validates it and parses it into object form.
         /// This is called at Startup.cs with default data but can be invoked later to change data. Not beautiful but
         /// good enough for the purpose.
         /// </summary>
