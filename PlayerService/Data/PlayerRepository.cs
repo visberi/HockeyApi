@@ -37,7 +37,7 @@ namespace PlayerService.Data
         /// This is called at Startup.cs with default data but can be invoked later to change data. Not beautiful but
         /// good enough for the purpose.
         /// </summary>
-        public static List<Player> InitializePlayerDataFromCsv(string csvPlayerData)
+        public static void InitializePlayerDataFromCsv(string csvPlayerData)
         {
 
             using TextReader reader = new StringReader(csvPlayerData);
@@ -74,8 +74,7 @@ namespace PlayerService.Data
 
             ValidatePlayerData(players);
 
-            return players;
-
+            _players = players;
         }
 
         /// <summary>
