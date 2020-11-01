@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using PlayerService.Controllers;
+using PlayerService.Data;
 using PlayerService.DataModel;
 using PlayerService.Properties;
 
@@ -67,6 +68,8 @@ namespace PlayerService
                 endpoints.MapControllers();
             });
 
+            // Initialize the data here. Would not be correct place in production app...
+            PlayerRepository.InitializePlayerDataFromCsv(Resources.DefaultPlayerData);
         }
     }
 }
