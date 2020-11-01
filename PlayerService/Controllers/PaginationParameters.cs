@@ -16,17 +16,17 @@ namespace PlayerService.Controllers
 
         }
 
-        public PaginationParameters(uint pageSize, uint currentPage)
+        public PaginationParameters(int pageSize, int currentPage)
         {
             Page = currentPage;
             PageSize = pageSize;
         }
 
-        public const uint MaxPageSize = 50;
-        public const uint MinPageSize = 1;
-        public uint Page { get; set; } = 1; // Default page number is 1
-        private uint _pageSize = 10; // Default page size is 10
-        public uint PageSize
+        public const int MaxPageSize = 50;
+        public const int MinPageSize = 1;
+        public int Page { get; set; } = 1; // Default page number is 1
+        private int _pageSize = 10; // Default page size is 10
+        public int PageSize
         {
             get => _pageSize;
             set

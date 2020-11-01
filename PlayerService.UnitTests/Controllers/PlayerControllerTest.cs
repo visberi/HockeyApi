@@ -30,7 +30,7 @@ namespace PlayerService.UnitTests.Controllers
         [Theory]
         [InlineData(1, 2, "Player9")]
         [InlineData(2, 3, "Player15")]
-        public void Player_AtCorrectLocation( uint pageNumber, int indexOnPage, string expectedPlayerName)
+        public void Player_AtCorrectLocation( int pageNumber, int indexOnPage, string expectedPlayerName)
         {
             ActionResult result = _controller.Get(new PaginationParameters(10,pageNumber));
 

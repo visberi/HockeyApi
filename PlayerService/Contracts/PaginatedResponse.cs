@@ -19,7 +19,7 @@ namespace PlayerService.Contracts
             PaginationInfo = pageInfo;
 
             // Check that the paging did not exceed the count of pages
-            uint lastPage = GetLastPage(nonPaginatedData, pageInfo.PageSize);
+            int lastPage = GetLastPage(nonPaginatedData, pageInfo.PageSize);
             if (pageInfo.Page > lastPage)
             {
                 pageInfo.Page = lastPage;
@@ -45,9 +45,9 @@ namespace PlayerService.Contracts
         /// Due to usage of IEnumerable this causes an extra enumeration. Using another
         /// data structure should be considered.
         /// </summary>
-        private static uint GetLastPage(IEnumerable<T> data, uint pageSize)
+        private static int GetLastPage(IEnumerable<T> data, int pageSize)
         {
-            return Convert.ToUInt32(Math.Ceiling( data.Count() / Convert.ToDecimal(pageSize)));
+            return Convert.ToInt32(Math.Ceiling( data.Count() / Convert.ToDecimal(pageSize)));
         }
     }
 }

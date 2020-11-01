@@ -17,7 +17,7 @@ namespace PlayerService.Controllers
         public ActionResult Get(string name, [FromQuery] PaginationParameters paginationParameters)
         {
             var response = new PaginatedResponse<Player>(PlayerProvider.GetPlayersByTeam(name), paginationParameters) ;
-            
+
             return Ok(response);
         }
     }
