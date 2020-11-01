@@ -23,7 +23,7 @@ namespace PlayerService.UnitTests
         {
             PlayerRepository.InitializePlayerDataFromCsv(Resources.ControllerTestData);
             ILoggerFactory mockFactory = new NullLoggerFactory();
-            _controller = new TeamController(mockFactory.CreateLogger<TeamController>(), new Data.PlayerService());
+            _controller = new TeamController(mockFactory.CreateLogger<TeamController>(), new Services.PlayerService());
         }
 
         [Theory]

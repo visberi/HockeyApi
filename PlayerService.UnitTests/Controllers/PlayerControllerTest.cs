@@ -11,7 +11,7 @@ using PlayerService.Data;
 using PlayerService.DataModel;
 using PlayerService.UnitTests.Properties;
 using Xunit;
-using PlayerService = PlayerService.Data.PlayerService;
+using PlayerService = PlayerService.Services.PlayerService;
 
 namespace PlayerService.UnitTests
 {
@@ -23,7 +23,7 @@ namespace PlayerService.UnitTests
         {
             PlayerRepository.InitializePlayerDataFromCsv(Resources.ControllerTestData);
             ILoggerFactory mockFactory = new NullLoggerFactory();
-            _controller = new PlayerController(mockFactory.CreateLogger<PlayerController>(), new Data.PlayerService());
+            _controller = new PlayerController(mockFactory.CreateLogger<PlayerController>(), new Services.PlayerService());
         }
 
         /// <summary>

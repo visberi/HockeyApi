@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using PlayerService.DataModel;
 
-namespace PlayerService.Data
+namespace PlayerService.Services
 {
     public interface IPlayerService
     {

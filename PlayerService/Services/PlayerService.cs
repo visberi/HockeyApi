@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using PlayerService.Data;
 using PlayerService.DataModel;
 
-namespace PlayerService.Data
+namespace PlayerService.Services
 {
     /// <summary>
     /// Player data provider layer

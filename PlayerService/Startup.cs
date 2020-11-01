@@ -16,6 +16,7 @@ using PlayerService.Controllers;
 using PlayerService.Data;
 using PlayerService.DataModel;
 using PlayerService.Properties;
+using PlayerService.Services;
 
 namespace PlayerService
 {
@@ -39,7 +40,7 @@ namespace PlayerService
 
             services.AddLogging();
 
-            services.AddSingleton<IPlayerService>(new Data.PlayerService());
+            services.AddSingleton<IPlayerService>(new Services.PlayerService());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

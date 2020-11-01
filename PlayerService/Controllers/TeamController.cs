@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using PlayerService.Contracts;
 using PlayerService.Data;
 using PlayerService.DataModel;
+using PlayerService.Services;
 
 namespace PlayerService.Controllers
 {
