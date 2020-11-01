@@ -16,6 +16,15 @@ namespace PlayerService.Controllers
 
         }
 
+        /// <summary>
+        /// Create new pagination parameter object.
+        /// </summary>
+        /// <param name="pageSize">If value is more then MaxPageSize, MaxPageSize value is used instead.
+        /// If value is less than MinPageSize, MinPageSiz is used instead.
+        /// </param>
+        /// <param name="currentPage">Page of data to be returned.
+        /// If value is less than 1, page number 1 is used.
+        /// </param>
         public PaginationParameters(int pageSize, int currentPage)
         {
             Page = currentPage;
@@ -24,8 +33,16 @@ namespace PlayerService.Controllers
 
         public const int MaxPageSize = 50;
         public const int MinPageSize = 1;
-        public int Page { get; set; } = 1; // Default page number is 1
-        private int _pageSize = 10; // Default page size is 10
+
+        private int _pageSize = 10;
+        private int _page = 1;
+
+        public int Page
+        {
+            get => _page;
+            set => _page = value < 1 ? 1 : value;
+        } 
+
         public int PageSize
         {
             get => _pageSize;
