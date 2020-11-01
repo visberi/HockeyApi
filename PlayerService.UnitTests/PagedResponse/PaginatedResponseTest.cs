@@ -8,14 +8,14 @@ using Xunit;
 
 namespace PlayerService.UnitTests
 {
-    public  class PagedResponseTest
+    public  class PaginatedResponseTest
     {
         private List<int> data;
         private int defaultDataCount = 25;
 
 
         private PaginationParameters paginationParameters;
-        public PagedResponseTest()
+        public PaginatedResponseTest()
         {
             data = new List<int>();
             for (int i = 0; i < defaultDataCount; i++)
@@ -31,22 +31,30 @@ namespace PlayerService.UnitTests
         private void DefaultDataThirdPage_HasFiveItems()
         {
             paginationParameters = new PaginationParameters(10,3);
-            PagedResponse<int> paginatedData = new PagedResponse<int>(data,paginationParameters);
+            PaginatedResponse<int> paginatedData = new PaginatedResponse<int>(data,paginationParameters);
             Assert.Equal(5,paginatedData.Data.Count());
         }
 
         [Fact]
         private void DefaultDataFirstPageLast_EqualsToNine()
         {
-            PagedResponse<int> paginatedData = new PagedResponse<int>(data,paginationParameters);
+            PaginatedResponse<int> paginatedData = new PaginatedResponse<int>(data,paginationParameters);
             Assert.Equal(9, paginatedData.Data.ToList()[9]);
+        }
+
+        [Fact]
+        private void PageOverMaximum_ReturnsLastPage()
+        { 
+            paginationParameters = new PaginationParameters(10, 4);
+            PaginatedResponse<int> paginatedData = new PaginatedResponse<int>(data, paginationParameters);
+            Assert.Equal(3u, paginatedData.PaginationInfo.Page);
         }
 
         [Fact]
         private void EmptyData_ReturnsEmpty()
         {
             data.Clear();
-            PagedResponse<int> paginatedData = new PagedResponse<int>(data,paginationParameters);
+            PaginatedResponse<int> paginatedData = new PaginatedResponse<int>(data,paginationParameters);
             Assert.Empty( paginatedData.Data);
         }
     }
