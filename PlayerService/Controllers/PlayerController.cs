@@ -36,6 +36,7 @@ namespace PlayerService.Controllers
             PaginatedResponse<Player> playerDataResponse = new PaginatedResponse<Player>(_playerService.GetPlayersOrdered(), paginationParameters);
 
             _logger.LogInformation("Successfully retrieved player information", playerDataResponse);
+
             return Ok(playerDataResponse);
         }
     }

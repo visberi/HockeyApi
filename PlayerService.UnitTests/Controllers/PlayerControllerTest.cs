@@ -11,7 +11,6 @@ using PlayerService.Data;
 using PlayerService.DataModel;
 using PlayerService.UnitTests.Properties;
 using Xunit;
-using PlayerService = PlayerService.Services.PlayerService;
 
 namespace PlayerService.UnitTests
 {

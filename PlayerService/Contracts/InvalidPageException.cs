@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace PlayerService.Contracts
 {
+    /// <summary>
+    /// Exception depicting that invalid page number was given.
+    /// </summary>
     public class InvalidPageException: InvalidOperationException
     {
         public InvalidPageException(string message): base(message)

@@ -17,8 +17,7 @@ namespace PlayerService.Data
         private static List<Player> _players = null;
 
         /// <summary>
-        /// Get list of players loaded in memory. If no loading has been done, load default player list from resource
-        /// files
+        /// Get list of players loaded in memory.
         /// </summary>
         public static List<Player> GetPlayers()
         {
@@ -26,18 +25,16 @@ namespace PlayerService.Data
             {
                 throw new InvalidOperationException("Error: player data has not been initialized.");
             }
-            // Return cached players or if no cache exists, read data from CSV file
             return _players;
         }
 
         /// <summary>
-        /// Reads player data from resource csv file into cache, validates it and parses it into object form.
+        /// Reads player data from resource csv string, validates it and parses it into object form cache.
         /// This is called at Startup.cs with default data but can be invoked later to change data. Not beautiful but
         /// good enough for the purpose.
         /// </summary>
         public static void InitializePlayerDataFromCsv(string csvPlayerData)
         {
-
             using TextReader reader = new StringReader(csvPlayerData);
             using var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture);
 

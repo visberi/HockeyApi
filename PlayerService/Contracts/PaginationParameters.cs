@@ -10,7 +10,7 @@ using PlayerService.Services;
 namespace PlayerService.Contracts
 {
     /// <summary>
-    /// A container class to for pagination information to implement simple pagination
+    /// A container class to for pagination information to implement simple offset pagination
     /// </summary>
     public class PaginationParameters
     {
@@ -24,9 +24,6 @@ namespace PlayerService.Contracts
 
         public const int MinPageSize = 1;
 
-        /// <summary>
-        /// Init with default values.
-        /// </summary>
         public PaginationParameters()
         {
             _pageSize = DefaultPageSize;
@@ -99,6 +96,7 @@ namespace PlayerService.Contracts
                 return uri;
             }
         }
+      
         public string PreviousUri
         {
             get

@@ -13,8 +13,6 @@ namespace PlayerService.Contracts
     /// </summary>
     public class PaginatedResponse<T>
     {
-
-
         /// <summary>
         /// Create a new response. Sets properties of pageInfo based on nonPaginatedData.
         /// </summary>
@@ -51,11 +49,6 @@ namespace PlayerService.Contracts
             return data.Skip( (int)( (PaginationInfo.CurrentPage - 1) * PaginationInfo.PageSize) ).Take( (int)PaginationInfo.PageSize);
         }
 
-        /// <summary>
-        /// Get last page number of the data.
-        /// Due to usage of IEnumerable this causes an extra enumeration. Using another
-        /// data structure should be considered.
-        /// </summary>
         private static int GetLastPageNumber(IEnumerable<T> data, int pageSize)
         {
             return Convert.ToInt32(Math.Ceiling( data.Count() / Convert.ToDecimal(pageSize)));

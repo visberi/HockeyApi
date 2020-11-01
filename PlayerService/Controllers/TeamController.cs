@@ -35,7 +35,9 @@ namespace PlayerService.Controllers
             paginationParameters.BaseUri = UriService.GetTeamUri(name).AbsoluteUri;
 
             var response = new PaginatedResponse<Player>(_playerService.GetPlayersByTeam(name), paginationParameters) ;
+
             _logger.LogInformation("Successfully retrieved team data", response);
+
             return Ok(response);
         }
     }

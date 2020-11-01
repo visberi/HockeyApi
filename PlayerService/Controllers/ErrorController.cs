@@ -29,14 +29,24 @@ namespace PlayerService.Controllers
         [Route("error")]
         public IActionResult Error()
         {
-            IActionResult result;
+ 
             var context = HttpContext.Features.Get<IExceptionHandlerFeature>();
             var exception = context?.Error; // Your exception
 
-            // Not Found result is thrown if invalid page is being searched
-            if (exception is InvalidPageException ) result = new NotFoundResult();
-            else result = new StatusCodeResult( (int)HttpStatusCode.InternalServerError);
+            // 404 Not Found result is thrown if invalid page is being searched
+            // Other exceptions produce 500 Internal Error
+            IActionResult result;
+            if (exception is InvalidPageException)
+            {
+                result = new NotFoundResult();
+            }
+            else
+            {
+                result = new StatusCodeResult( (int)HttpStatusCode.InternalServerError);
+            }
+
             _logger.LogError(String.Format("Error occurred: {0}", exception.Message));
+          
             return result; // Your error model
         }
     }

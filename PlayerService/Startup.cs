@@ -54,7 +54,7 @@ namespace PlayerService
             app.UseExceptionHandler("/error");
 
 
-            // This is a demo application, disabled https
+            // This is a demo application, disabled https to avoid certificate hassle
             //app.UseHttpsRedirection();
 
             // Enable Swagger api documentation service
