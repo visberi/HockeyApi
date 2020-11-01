@@ -1,9 +1,9 @@
 # HockeyApi
 An API for returning hockey players.
 ## How to build
-The application is a .NET Core 3.1 http REST API application.
-Use Visual Studio 2019 or VS Code with .NET Core 3.1 SDK to build
-Tests made with XUnit, can be run with in IDE or with CLI
+- The application is a .NET Core 3.1 http REST API application.
+- Use Visual Studio 2019 or VS Code with .NET Core 3.1 SDK to build
+- Tests made with XUnit, can be run with in Visual Studio IDE or with XUnit CLI
 
 The application data layer and tests use csv files added to project resources. If you want to change them, rebuild the project for changes to be added to resource strings.
 ## How to use
