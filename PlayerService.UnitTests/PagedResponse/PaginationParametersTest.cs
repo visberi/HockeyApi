@@ -9,17 +9,24 @@ namespace PlayerService.UnitTests
     public class PaginationParametersTest
     {
         [Fact]
-        private void NewParamsPageSizeOverMax_SetToMaxSize()
+        private void PageSizeOverMax_SetToMaxSize()
         {
-            var paginationParameters = new PaginationParameters(856, 2);
+            PaginationParameters paginationParameters = new PaginationParameters(856, 2);
             Assert.Equal(PaginationParameters.MaxPageSize, paginationParameters.PageSize);
         }
 
         [Fact]
-        private void NewParamsPageSizeZero_SetToMinimumSize()
+        private void PageSizeZero_SetToMinimumSize()
         {
-            var paginationParameters = new PaginationParameters(0, 2);
+            PaginationParameters paginationParameters = new PaginationParameters(0, 2);
             Assert.Equal(PaginationParameters.MinPageSize, paginationParameters.PageSize);
+        }
+
+        [Fact]
+        private void CurrentPageZero_SetToFirstPage()
+        {
+            PaginationParameters paginationParameters = new PaginationParameters(10, 0);
+            Assert.Equal(1, paginationParameters.Page);
         }
     }
 }

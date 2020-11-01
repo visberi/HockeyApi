@@ -10,7 +10,7 @@ using PlayerService.DataModel;
 using PlayerService.UnitTests.Properties;
 using Xunit;
 
-namespace PlayerService.UnitTests.Controllers
+namespace PlayerService.UnitTests
 {
     public class PlayerControllerTest
     {
