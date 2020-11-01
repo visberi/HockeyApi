@@ -17,8 +17,9 @@ namespace PlayerService.Controllers
     public class PlayerController : ControllerBase
     {
         [HttpGet]
-        public ActionResult Get([FromQuery] PaginationParameters paginationParameters)
+        public ActionResult Get(int pageSize, int page)
         {
+            PaginationParameters paginationParameters = new PaginationParameters(pageSize, page);
             paginationParameters.BaseUri = UriService.GetPlayerUri();
             PaginatedResponse<Player> playerDataResponse = new PaginatedResponse<Player>(PlayerProvider.GetPlayersOrdered(), paginationParameters);
 

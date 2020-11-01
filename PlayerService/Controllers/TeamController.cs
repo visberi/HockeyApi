@@ -15,8 +15,9 @@ namespace PlayerService.Controllers
     public class TeamController : ControllerBase
     {
         [HttpGet("{name}", Name = "Get")]
-        public ActionResult Get(string name, [FromQuery] PaginationParameters paginationParameters)
+        public ActionResult Get(string name, int pageSize, int page)
         {
+            PaginationParameters paginationParameters = new PaginationParameters(pageSize, page);
             var response = new PaginatedResponse<Player>(PlayerProvider.GetPlayersByTeam(name), paginationParameters) ;
 
             return Ok(response);

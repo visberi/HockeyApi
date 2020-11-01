@@ -33,7 +33,7 @@ namespace PlayerService.UnitTests
         [InlineData(2, 7, "Player10")]
         public void Player_AtCorrectLocation( int pageNumber, int indexOnPage, string expectedPlayerName)
         {
-            ActionResult result = _controller.Get(new PaginationParameters(10,pageNumber));
+            ActionResult result = _controller.Get(10,pageNumber);
 
             Assert.IsType<OkObjectResult>(result);
 

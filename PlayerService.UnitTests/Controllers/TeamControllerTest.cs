@@ -27,7 +27,7 @@ namespace PlayerService.UnitTests
         [InlineData("Team 4", 1, 0, 4, 4)]
         private void TeamPlayers_SortedCorrectly(string team, int pageNumber, int indexOnPage, int expectedPlayerNumberOnPage, int expectedPlayerCount)
         {
-            ActionResult result = _controller.Get(team, new PaginationParameters(10,pageNumber));
+            ActionResult result = _controller.Get(team, 10,pageNumber);
 
             Assert.IsType<OkObjectResult>(result);
 
@@ -47,7 +47,7 @@ namespace PlayerService.UnitTests
         [Fact]
         private void NonExistentTeam_Returns200AndEmptySet()
         {
-            ActionResult result = _controller.Get("Team Nonexistent", new PaginationParameters(10,1));
+            ActionResult result = _controller.Get("Team Nonexistent", 10,1);
 
             Assert.IsType<OkObjectResult>(result);
 

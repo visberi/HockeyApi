@@ -20,7 +20,7 @@ namespace PlayerService.Services
 
         public static Uri GetTeamUri(string teamName)
         {
-            string uri = QueryHelpers.AddQueryString(_baseUri, "name", teamName);
+            string uri = QueryHelpers.AddQueryString(_baseUri + _teamPath, "name", teamName);
             return  new Uri(uri);
         }
 
