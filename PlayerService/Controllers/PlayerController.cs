@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using PlayerService.Contracts;
 using PlayerService.Data;
 using PlayerService.DataModel;
+using PlayerService.Services;
 
 namespace PlayerService.Controllers
 {
@@ -18,8 +19,9 @@ namespace PlayerService.Controllers
         [HttpGet]
         public ActionResult Get([FromQuery] PaginationParameters paginationParameters)
         {
-            PaginatedResponse<Player> playerDataResponse = new PaginatedResponse<Player>(  PlayerProvider.GetPlayersOrdered(), paginationParameters);
-            
+            paginationParameters.BaseUri = UriService.GetPlayerUri();
+            PaginatedResponse<Player> playerDataResponse = new PaginatedResponse<Player>(PlayerProvider.GetPlayersOrdered(), paginationParameters);
+
             return Ok(playerDataResponse);
         }
     }

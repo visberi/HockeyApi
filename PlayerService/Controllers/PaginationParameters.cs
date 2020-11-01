@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.WebUtilities;
+using PlayerService.Services;
 
 namespace PlayerService.Controllers
 {
@@ -22,12 +24,12 @@ namespace PlayerService.Controllers
         /// <param name="pageSize">If value is more then MaxPageSize, MaxPageSize value is used instead.
         /// If value is less than MinPageSize, MinPageSiz is used instead.
         /// </param>
-        /// <param name="currentPage">Page of data to be returned.
+        /// <param name="currentCurrentPage">CurrentPage of data to be returned.
         /// If value is less than 1, page number 1 is used.
         /// </param>
-        public PaginationParameters(int pageSize, int currentPage)
+        public PaginationParameters(int pageSize, int currentCurrentPage)
         {
-            Page = currentPage;
+            CurrentPage = currentCurrentPage;
             PageSize = pageSize;
         }
 
@@ -35,12 +37,12 @@ namespace PlayerService.Controllers
         public const int MinPageSize = 1;
 
         private int _pageSize = 10;
-        private int _page = 1;
+        private int _currentPage = 1;
 
-        public int Page
+        public int CurrentPage
         {
-            get => _page;
-            set => _page = value < 1 ? 1 : value;
+            get => _currentPage;
+            set => _currentPage = value < 1 ? 1 : value;
         } 
 
         public int PageSize
@@ -62,5 +64,35 @@ namespace PlayerService.Controllers
                 }
             } 
         }
+
+        public Uri NextUri {
+            get
+            {
+                if (CurrentPage == TotalPageCount)
+                {
+                    return null;
+                }
+                string uri = QueryHelpers.AddQueryString(BaseUri.ToString(), "CurrentPage", (CurrentPage + 1).ToString());
+                uri = QueryHelpers.AddQueryString(uri, "PageSize", PageSize.ToString());
+                return  new Uri(uri);
+            }
+        }
+
+        public Uri PreviousUri
+        {
+            get
+            {
+                if (CurrentPage < 2)
+                {
+                    return null;
+                }
+                string uri = QueryHelpers.AddQueryString(BaseUri.ToString(), "CurrentPage", (CurrentPage - 1).ToString());
+                uri = QueryHelpers.AddQueryString(uri, "PageSize", PageSize.ToString());
+                return  new Uri(uri);
+            }
+        }
+
+        public Uri BaseUri { get; set; }
+        public int TotalPageCount { get; set; }
     }
 }

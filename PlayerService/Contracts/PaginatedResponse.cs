@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using PlayerService.Controllers;
 using PlayerService.DataModel;
+using PlayerService.Services;
 
 namespace PlayerService.Contracts
 {
@@ -18,12 +19,16 @@ namespace PlayerService.Contracts
  
             PaginationInfo = pageInfo;
 
+            // Set pagination information to reflect the state of data.
+
             // Check that the paging did not exceed the count of pages
-            int lastPage = GetLastPage(nonPaginatedData, pageInfo.PageSize);
-            if (pageInfo.Page > lastPage)
+            int lastPage = GetLastPageNumber(nonPaginatedData, pageInfo.PageSize);
+            if (pageInfo.CurrentPage > lastPage)
             {
-                pageInfo.Page = lastPage;
+                pageInfo.CurrentPage = lastPage;
             }
+
+            pageInfo.TotalPageCount = lastPage;
         }
 
         private IEnumerable<T> NonPaginatedData { get; set; }
@@ -37,7 +42,7 @@ namespace PlayerService.Contracts
 
         private IEnumerable<T> ApplyPagination(IEnumerable<T> data)
         {
-            return data.Skip( (int)( (PaginationInfo.Page - 1) * PaginationInfo.PageSize) ).Take( (int)PaginationInfo.PageSize);
+            return data.Skip( (int)( (PaginationInfo.CurrentPage - 1) * PaginationInfo.PageSize) ).Take( (int)PaginationInfo.PageSize);
         }
 
         /// <summary>
@@ -45,7 +50,7 @@ namespace PlayerService.Contracts
         /// Due to usage of IEnumerable this causes an extra enumeration. Using another
         /// data structure should be considered.
         /// </summary>
-        private static int GetLastPage(IEnumerable<T> data, int pageSize)
+        private static int GetLastPageNumber(IEnumerable<T> data, int pageSize)
         {
             return Convert.ToInt32(Math.Ceiling( data.Count() / Convert.ToDecimal(pageSize)));
         }

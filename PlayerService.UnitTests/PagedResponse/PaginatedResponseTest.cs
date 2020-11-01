@@ -47,7 +47,7 @@ namespace PlayerService.UnitTests
         { 
             paginationParameters = new PaginationParameters(10, 4);
             PaginatedResponse<int> paginatedData = new PaginatedResponse<int>(data, paginationParameters);
-            Assert.Equal(3, paginatedData.PaginationInfo.Page);
+            Assert.Equal(3, paginatedData.PaginationInfo.CurrentPage);
         }
 
         [Fact]

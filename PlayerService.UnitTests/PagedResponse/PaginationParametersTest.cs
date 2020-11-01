@@ -26,7 +26,7 @@ namespace PlayerService.UnitTests
         private void CurrentPageZero_SetToFirstPage()
         {
             PaginationParameters paginationParameters = new PaginationParameters(10, 0);
-            Assert.Equal(1, paginationParameters.Page);
+            Assert.Equal(1, paginationParameters.CurrentPage);
         }
     }
 }
