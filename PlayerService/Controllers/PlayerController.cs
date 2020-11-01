@@ -16,10 +16,6 @@ namespace PlayerService.Controllers
     [ApiController]
     public class PlayerController : ControllerBase
     {
-        public PlayerController()
-        {
-        }
-
         public PlayerController(ILogger<PlayerController> logger, IPlayerService playerService)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -35,7 +31,7 @@ namespace PlayerService.Controllers
         {
             PaginationParameters paginationParameters = new PaginationParameters(pageSize, page);
 
-            paginationParameters.BaseUri = UriService.GetPlayerUri();
+            paginationParameters.BaseUri = UriService.GetPlayerUri().AbsoluteUri;
 
             PaginatedResponse<Player> playerDataResponse = new PaginatedResponse<Player>(_playerService.GetPlayersOrdered(), paginationParameters);
 

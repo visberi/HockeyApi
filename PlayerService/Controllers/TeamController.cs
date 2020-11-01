@@ -27,10 +27,12 @@ namespace PlayerService.Controllers
 
         private IPlayerService _playerService;
 
-        [HttpGet("{name}", Name = "Get")]
+        [HttpGet]
         public ActionResult Get(string name, int pageSize, int page)
         {
             PaginationParameters paginationParameters = new PaginationParameters(pageSize, page);
+
+            paginationParameters.BaseUri = UriService.GetTeamUri(name).AbsoluteUri;
 
             var response = new PaginatedResponse<Player>(_playerService.GetPlayersByTeam(name), paginationParameters) ;
             _logger.LogInformation("Successfully retrieved team data", response);

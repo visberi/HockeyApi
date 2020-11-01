@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.WebUtilities;
 using PlayerService.Services;
@@ -13,7 +14,7 @@ namespace PlayerService.Contracts
     /// </summary>
     public class PaginationParameters
     {
-        public static int CurrentPageNotSet = 0;
+        public static int ValueNotSet = 0;
 
         private const int DefaultPage = 1;
 
@@ -28,8 +29,8 @@ namespace PlayerService.Contracts
         /// </summary>
         public PaginationParameters()
         {
-            _pageSize = 10;
-            _currentPage = 1;
+            _pageSize = DefaultPageSize;
+            _currentPage = DefaultPage;
         }
 
         /// <summary>
@@ -43,23 +44,22 @@ namespace PlayerService.Contracts
         /// </param>
         public PaginationParameters(int pageSize, int currentPage)
         {
-            PageSize = pageSize == CurrentPageNotSet ? DefaultPageSize : pageSize;
+            PageSize = pageSize == ValueNotSet ? DefaultPageSize : pageSize;
 
             CurrentPage = currentPage;
-            PageSize = pageSize;
         }
 
-        private int _pageSize = 10;
+        private int _pageSize;
 
-        private int _currentPage = 1;
+        private int _currentPage;
 
         public int CurrentPage
         {
             get => _currentPage;
-            set => _currentPage = value == CurrentPageNotSet ? DefaultPage : value;
+            set => _currentPage = value == ValueNotSet ? DefaultPage : value;
         }
 
-        public Uri BaseUri { get; set; }
+        public string BaseUri { get; set; }
 
         public int TotalPageCount { get; set; }
 
@@ -71,9 +71,9 @@ namespace PlayerService.Contracts
             get => _pageSize;
             set
             {
-                if (value < MinPageSize)
+                if (value < ValueNotSet)
                 {
-                    _pageSize = MinPageSize;
+                    _pageSize = DefaultPageSize;
                 }
                 else if (value > MaxPageSize)
                 {
@@ -86,7 +86,7 @@ namespace PlayerService.Contracts
             } 
         }
 
-        public Uri NextUri 
+        public string NextUri 
         {
             get
             {
@@ -96,10 +96,10 @@ namespace PlayerService.Contracts
                 }
                 string uri = QueryHelpers.AddQueryString(BaseUri.ToString(), "CurrentPage", (CurrentPage + 1).ToString());
                 uri = QueryHelpers.AddQueryString(uri, "PageSize", PageSize.ToString());
-                return  new Uri(uri);
+                return uri;
             }
         }
-        public Uri PreviousUri
+        public string PreviousUri
         {
             get
             {
@@ -109,7 +109,7 @@ namespace PlayerService.Contracts
                 }
                 string uri = QueryHelpers.AddQueryString(BaseUri.ToString(), "CurrentPage", (CurrentPage - 1).ToString());
                 uri = QueryHelpers.AddQueryString(uri, "PageSize", PageSize.ToString());
-                return  new Uri(uri);
+                return uri;
             }
         }
     }

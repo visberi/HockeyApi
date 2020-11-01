@@ -29,7 +29,7 @@ namespace PlayerService.Contracts
 
             int lastPage = GetLastPageNumber(nonPaginatedData, pageInfo.PageSize);
 
-            if ((pageInfo.CurrentPage > lastPage || pageInfo.CurrentPage < PaginationParameters.CurrentPageNotSet) && NonPaginatedData.Any())
+            if ((pageInfo.CurrentPage > lastPage || pageInfo.CurrentPage < PaginationParameters.ValueNotSet) && NonPaginatedData.Any())
             {
                 throw  new InvalidPageException(String.Format("Invalid page {0} does not exist.", pageInfo.CurrentPage));
             }

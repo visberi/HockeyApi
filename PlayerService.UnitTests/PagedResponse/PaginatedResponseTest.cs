@@ -28,18 +28,26 @@ namespace PlayerService.UnitTests
         }
 
         [Fact]
+        private void PageSizeZero_SetToTen()
+        {
+            paginationParameters = new PaginationParameters(0, 1);
+            PaginatedResponse<int> paginatedResponse = new PaginatedResponse<int>(data,paginationParameters);
+            Assert.Equal(10, paginationParameters.PageSize);
+        }
+
+        [Fact]
         private void DefaultDataThirdPage_HasFiveItems()
         {
-            paginationParameters = new PaginationParameters(10,3);
-            PaginatedResponse<int> paginatedData = new PaginatedResponse<int>(data,paginationParameters);
-            Assert.Equal(5,paginatedData.Data.Count());
+            PaginationParameters paginationParameters = new PaginationParameters(10,3);
+            PaginatedResponse<int> paginatedResponse = new PaginatedResponse<int>(data,paginationParameters);
+            Assert.Equal(5,paginatedResponse.Data.Count());
         }
 
         [Fact]
         private void DefaultDataFirstPageLast_EqualsToNine()
         {
-            PaginatedResponse<int> paginatedData = new PaginatedResponse<int>(data,paginationParameters);
-            Assert.Equal(9, paginatedData.Data.ToList()[9]);
+            PaginatedResponse<int> paginatedResponse = new PaginatedResponse<int>(data,paginationParameters);
+            Assert.Equal(9, paginatedResponse.Data.ToList()[9]);
         }
 
         [Fact]
